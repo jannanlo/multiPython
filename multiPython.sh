@@ -39,9 +39,17 @@ install_tar_pkg(){
         local pkg_dir=${pkg_path%/*}
         local pkg_name=${pkg_path##*/}
         cd ${pkg_dir}
-        tar -zxvf ${pkg_name}
-        cd ${pkg_name%.tar*}
+        
+        if [[ ${pkg_name} =~ .zip$ ]]; then
+            unzip ${pkg_name}
+            cd ${pkg_name%.zip}
+        elif [[ ${pkg_name} =~ .tar.* ]]; then
+            tar -zxvf ${pkg_name}
+            cd ${pkg_name%.tar*}
+        fi
+        
         ${py_bin} setup.py install
+        cd -
     fi
 }
 
