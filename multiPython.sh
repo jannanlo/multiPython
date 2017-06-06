@@ -55,7 +55,12 @@ install_tar_pkg(){
 
 main(){
 
+
 #make_install /data/Python-2.7.13.tgz
+#
+#
+##alias python=/usr/local/bin/python2.7
+#pip2.7 virtualenv
 }
 
 #
