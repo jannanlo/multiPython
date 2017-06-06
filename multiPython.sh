@@ -35,7 +35,7 @@ make_install(){
 install_tar_pkg(){
     local py_bin=$1
     local pkg_path=$2
-    if [[ -n ${py_bin} -a -n ${pkg_path}]]; then
+    if [[ -n ${py_bin} && -n ${pkg_path} ]]; then
         local pkg_dir=${pkg_path%/*}
         local pkg_name=${pkg_path##*/}
         cd ${pkg_dir}
