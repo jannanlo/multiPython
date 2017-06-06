@@ -4,7 +4,7 @@
 
 PWD=$(pwd)
 
-download_python(){
+download_pkg(){
     local py_url=$1
     if [[ ! -n ${py_url} ]]; then
         py_url=https://www.python.org/ftp/python/2.7.13/Python-2.7.13.tgz
