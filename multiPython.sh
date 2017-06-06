@@ -6,7 +6,7 @@ PWD=$(pwd)
 
 download_python(){
     local py_url=$1
-    if [[ -z ${py_url} ]]; then
+    if [[ ! -n ${py_url} ]]; then
         py_url=https://www.python.org/ftp/python/2.7.13/Python-2.7.13.tgz
     fi
     local pkg_dir=${PWD}/softwares
@@ -20,10 +20,23 @@ download_python(){
 
 make_install(){
     local pkg_path=$1
-    if [[ ! -z ${pkg_path} ]]; then
+    if [[ -n ${pkg_path} ]]; then
         local pkg_dir=${pkg_path%/*}
-        local pkg_name=${pkg_path##/*}
+        local pkg_name=${pkg_path##*/}
         cd ${pkg_dir}
         tar -zxvf ${pkg_name}
+        cd ${pkg_name%.*}
+        ./configure --prefix=/usr/local --enable-unicode=ucs4 --enable-shared LDFLAGS="-Wl,-rpath /usr/local/lib"
+        make && make altinstall
     fi
 }
+
+
+main(){
+
+make_install /data/Python-2.7.13.tgz
+}
+
+#
+#configure: error: no acceptable C compiler found in $PATH
+#solve method:yum install gcc
