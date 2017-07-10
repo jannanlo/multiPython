@@ -64,7 +64,7 @@ main(){
 #
 #
 ##alias python=/usr/local/bin/python2.7
-#pip2.7 virtualenv
+#pip2.7 install virtualenv
 }
 
 #
